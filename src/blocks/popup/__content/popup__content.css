@@ -1,0 +1,8 @@
+.popup__content {
+  padding: 20px;
+  border-radius: 12px;
+  background-color: aliceblue;
+  width: 40vw;
+  min-height: 40vh;
+  position: relative;
+}

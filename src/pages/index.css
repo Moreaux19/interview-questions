@@ -1,0 +1,15 @@
+@import url(../vendor/normalize.css);
+
+@import url(../blocks/page/page.css);
+
+@import url(../blocks/main/main.css);
+
+@import url(../blocks/start-button/start-button.css);
+
+@import url(../blocks/popup/popup.css);
+
+@import url(../blocks/popup/__content/popup__content.css);
+
+@import url(../blocks/popup/_active/popup_active.css);
+
+@import url(../blocks/popup/__close-button/popup__close-button.css);
