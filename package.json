@@ -1,7 +1,7 @@
 {
   "name": "interview-questions",
   "homepage": "https://moreaux19.github.io/interview-questions/",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
