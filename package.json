@@ -1,6 +1,6 @@
 {
-  "name": "interview-qa",
-  "private": true,
+  "name": "interview-questions",
+  "homepage": "https://moreaux19.github.io/interview-questions/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
