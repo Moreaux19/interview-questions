@@ -15,4 +15,5 @@
 - ООП
 - Vite
 
+Страница проекта на Github Pages: https://moreaux19.github.io/interview-questions/
 Проект выполнил Евгений Басаргин.
