@@ -1,0 +1,15 @@
+.popup__answer-button {
+  width: 6rem;
+  height: 2.4rem;
+  background-color: green;
+  color: white;
+  border-style: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  padding: 6px 16px;
+  transition: opacity 0.3;
+}
+
+.popup__answer-button:hover {
+  opacity: 0.8;
+}

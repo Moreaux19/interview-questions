@@ -13,3 +13,9 @@
 @import url(../blocks/popup/_active/popup_active.css);
 
 @import url(../blocks/popup/__close-button/popup__close-button.css);
+
+@import url(../blocks/popup/__buttons-container/popup__buttons-container.css);
+
+@import url(../blocks/popup/__answer-button/popup__answer-button.css);
+
+@import url(../blocks/popup/__span-container/popup__span-container.css);

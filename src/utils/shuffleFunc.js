@@ -1,4 +1,4 @@
-//функция перемешивания массива
+// Функция перемешивания массива
 export default function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -7,7 +7,7 @@ export default function shuffleArray(array) {
   return array;
 }
 
-// функция для показа случайного элемента
+// Функция для показа случайного элемента
 function showRandomElement(data) {
   let currentIndex = 0;
   if (currentIndex < data.length) {
