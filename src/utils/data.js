@@ -230,11 +230,6 @@ const data = [
     question: 'Как работает компонент Route в React Router?',
     answer:
       "Компонент `Route` используется для определения маршрута и компонента, который должен быть отображен для этого маршрута. Пример: `<Route path='/about' component={About} />`. Также можно использовать рендер-функцию для передачи props: `<Route path='/about' render={(props) => <About {...props} />} />`."
-  },
-  {
-    question: 'Что такое Redux и зачем он нужен?',
-    answer:
-      "Redux —Here's a detailed list of 50 common interview questions for a Junior React Developer, along with comprehensive answers. Each entry in the array includes a `question` and an `answer` key"
   }
 ];
 
