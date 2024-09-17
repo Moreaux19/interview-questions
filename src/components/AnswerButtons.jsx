@@ -2,38 +2,89 @@ import React, { useState } from 'react';
 import data from '../utils/data';
 // import { handleClick } from '../utils/handleClick';
 
-export default function AnswerButtons() {
-  const [counts, setCounts] = useState({ rightButton: 0, wrongButton: 0 });
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isDisabled, setIsDisabled] = useState(false);
+const totalQuestions = data.length;
 
-  const handleClick = button => {
-    // Обновляем счетчики
-    setCounts(prevState => ({
-      ...prevState,
-      [button]: prevState[button] + 1
-    }));
+export default function AnswerButtons({ getRandomElement }) {
+  // const [counts, setCounts] = useState({ rightButton: 0, wrongButton: 0 });
+  // const [currentIndex, setCurrentIndex] = useState(0);
+  // const [isDisabled, setIsDisabled] = useState(false);
 
-    // Проверяем, не последний ли это вопрос, если да — делаем кнопку неактивной
-    currentIndex < data.length - 1
-      ? setCurrentIndex(currentIndex + 1)
-      : setTimeout(() => {
-          setIsDisabled(true);
-          alert('Больше вопросов нет.');
+  // const handleClick = button => {
+  //   // Обновляем счетчики
+  //   setCounts(prevState => ({
+  //     ...prevState,
+  //     [button]: prevState[button] + 1
+  //   }));
+
+  //   // Проверяем, не последний ли это вопрос, если да — делаем кнопку неактивной
+  //   currentIndex < data.length - 1
+  //     ? setCurrentIndex(currentIndex + 1)
+  //     : setTimeout(() => {
+  //         setIsDisabled(true);
+  //         alert('Больше вопросов нет.');
+  //       }, 100);
+  // };
+
+  // Счётчик для кнопки верных ответов
+  const [rightButtonCount, setRightButtonCount] = useState(0);
+  // Счётчик для кнопки неверных ответов
+  const [wrongButtonCount, setWrongButtonCount] = useState(0);
+  // Счётчик для общего количества кликов
+  const [totalClicks, setTotalClicks] = useState(0);
+
+  // Функция для увеличения общего счётчика кликов
+  const incrementTotalClicks = () => {
+    setTotalClicks(prev => {
+      const newTotal = prev + 1;
+
+      //Если вопросы закончились, блокируем кнопки и показываем alert
+      if (newTotal >= totalQuestions) {
+        setTimeout(() => {
+          alert('Больше вопросов нет');
         }, 100);
+      }
+      return newTotal;
+    });
   };
+
+  // Обработчик кликов для rightButton
+  const handleRightButtonClick = () => {
+    // Увеличиваем счётчик верных ответов
+    setRightButtonCount(prev => prev + 1);
+
+    // Увеличиваем общий счётчик кликов
+    incrementTotalClicks();
+
+    // Получаем новый вопрос
+    getRandomElement();
+  };
+
+  // Обработчик кликов для wrongButton
+  const handleWrongButtonClick = () => {
+    // Увеличиваем счётчик неверных ответов
+    setWrongButtonCount(prev => prev + 1);
+
+    // Увеличиваем общий счётчик кликов
+    incrementTotalClicks();
+
+    // Получаем новый вопрос
+    getRandomElement();
+  };
+
+  // Блокируем кнопки, если вопросы закончились
+  const isDisabled = totalClicks >= totalQuestions;
 
   return (
     <div className="popup__buttons-container">
       <button
-        onClick={() => handleClick('rightButton')}
+        onClick={handleRightButtonClick}
         className="popup__answer-button"
         disabled={isDisabled}
       >
         Right
       </button>
       <button
-        onClick={() => handleClick('wrongButton')}
+        onClick={handleWrongButtonClick}
         className="popup__answer-button"
         style={{ backgroundColor: 'red' }}
         disabled={isDisabled}
@@ -42,10 +93,10 @@ export default function AnswerButtons() {
       </button>
       <div className="popup__span-container">
         <span style={{ color: 'green' }}>
-          Right: [{counts.rightButton} of {data.length}]
+          Right: [{rightButtonCount} of {totalQuestions}]
         </span>
         <span style={{ color: 'red' }}>
-          Wrong: [{counts.wrongButton} of {data.length}]
+          Wrong: [{wrongButtonCount} of {totalQuestions}]
         </span>
       </div>
     </div>

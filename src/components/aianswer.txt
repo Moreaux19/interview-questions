@@ -1,0 +1,144 @@
+Хорошо! Давай добавим описанный функционал с помощью хуков useState, который будет отслеживать количество нажатий на каждую кнопку (rightButton и wrongButton), а также общий счётчик кликов. При превышении заданного числа N, кнопки будут заблокированы, и появится уведомление через alert.
+
+Изменения в AnswerButtons.jsx:
+Добавляем два отдельных состояния для отслеживания количества кликов на каждую кнопку.
+Добавляем состояние для общего счётчика кликов.
+Реализуем блокировку кнопок и вывод alert при превышении числа N.
+Вот обновлённый код:
+
+1. Файл AnswerButtons.jsx:
+jsx
+Копировать код
+import React, { useState } from "react";
+
+const AnswerButtons = ({ getRandomObject }) => {
+  const [rightButtonCount, setRightButtonCount] = useState(0); // Счётчик для первой кнопки
+  const [wrongButtonCount, setWrongButtonCount] = useState(0); // Счётчик для второй кнопки
+  const [totalClicks, setTotalClicks] = useState(0); // Общий счётчик кликов
+  const N = 5; // Порог для блокировки кнопок
+
+  // Обработчик кликов для первой кнопки (rightButton)
+  const handleRightButtonClick = () => {
+    setRightButtonCount((prev) => prev + 1); // Увеличиваем счётчик
+    incrementTotalClicks(); // Увеличиваем общий счётчик
+    getRandomObject(); // Вызываем функцию из App
+  };
+
+  // Обработчик кликов для второй кнопки (wrongButton)
+  const handleWrongButtonClick = () => {
+    setWrongButtonCount((prev) => prev + 1); // Увеличиваем счётчик
+    incrementTotalClicks(); // Увеличиваем общий счётчик
+    getRandomObject(); // Вызываем функцию из App
+  };
+
+  // Функция для увеличения общего счётчика кликов
+  const incrementTotalClicks = () => {
+    setTotalClicks((prev) => {
+      const newTotal = prev + 1;
+
+      // Если количество кликов превышает N, блокируем кнопки и показываем alert
+      if (newTotal >= N) {
+        alert("Больше вопросов нет.");
+      }
+
+      return newTotal;
+    });
+  };
+
+  // Блокируем кнопки, если количество кликов превышает N
+  const isDisabled = totalClicks >= N;
+
+  return (
+    <div>
+      {/* Кнопки */}
+      <button onClick={handleRightButtonClick} disabled={isDisabled}>
+        Показать объект 1 (Right Button)
+      </button>
+      <button onClick={handleWrongButtonClick} disabled={isDisabled}>
+        Показать объект 2 (Wrong Button)
+      </button>
+
+      {/* Счётчики */}
+      <div>
+        <span style={{ color: "green" }}>
+          Right Button Clicks: {rightButtonCount}
+        </span>
+        <span style={{ color: "red", marginLeft: "10px" }}>
+          Wrong Button Clicks: {wrongButtonCount}
+        </span>
+      </div>
+    </div>
+  );
+};
+
+export default AnswerButtons;
+Описание изменений:
+Состояния:
+
+rightButtonCount: отслеживает количество кликов на первую кнопку (rightButton).
+wrongButtonCount: отслеживает количество кликов на вторую кнопку (wrongButton).
+totalClicks: отслеживает общее количество кликов на обе кнопки.
+Обработчики:
+
+handleRightButtonClick и handleWrongButtonClick: увеличивают счётчики для каждой кнопки и общий счётчик, вызывают функцию getRandomObject из компонента App.
+Блокировка кнопок:
+
+Если общее количество кликов превышает или равно N (в нашем случае 5), кнопки блокируются, и появляется сообщение "Больше вопросов нет" через alert.
+2. Файл App.jsx:
+Этот файл остаётся без изменений, за исключением того, что передаётся функция getRandomObject в компонент AnswerButtons.
+
+jsx
+Копировать код
+import React, { useState } from "react";
+import AnswerButtons from "./AnswerButtons"; // Импортируем компонент кнопок
+
+const data = [
+  { '1': 'A', '2': 'B' },
+  { '3': 'C', '4': 'D' },
+  { '5': 'E', '6': 'F' },
+];
+
+const App = () => {
+  const [shownObjects, setShownObjects] = useState([]);
+  const [currentObject, setCurrentObject] = useState(null);
+
+  // Функция для выбора случайного объекта
+  const getRandomObject = () => {
+    const remainingObjects = data.filter(
+      (item) => !shownObjects.includes(item)
+    );
+
+    if (remainingObjects.length === 0) {
+      setShownObjects([]);
+      setCurrentObject(null);
+      return;
+    }
+
+    const randomObject =
+      remainingObjects[Math.floor(Math.random() * remainingObjects.length)];
+
+    setShownObjects([...shownObjects, randomObject]);
+    setCurrentObject(randomObject);
+  };
+
+  return (
+    <div>
+      <h1>Random Object Selector</h1>
+      {currentObject && (
+        <div>
+          {Object.entries(currentObject).map(([key, value]) => (
+            <p key={key}>
+              Key: {key}, Value: {value}
+            </p>
+          ))}
+        </div>
+      )}
+
+      {/* Рендерим компонент AnswerButtons и пробрасываем в него функцию */}
+      <AnswerButtons getRandomObject={getRandomObject} />
+    </div>
+  );
+};
+
+export default App;
+Теперь при нажатии на кнопки будет работать счётчик для каждой кнопки, общий счётчик кликов и блокировка кнопок после достижения порога в N нажатий.
