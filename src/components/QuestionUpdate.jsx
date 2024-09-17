@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import AnswerButtons from './AnswerButtons.jsx';
 import data from '../utils/data';
 
@@ -9,6 +9,9 @@ export default function QuestionUpdate() {
 
   // Хук состояния для отслеживания текущей карточки
   const [currentElement, setCurrentElement] = useState(null);
+
+  // Хук для элемента details
+  const detailsRef = useRef(null);
 
   const getRandomElement = () => {
     // Фильтруем карточки, которые уже были показаны
@@ -26,27 +29,35 @@ export default function QuestionUpdate() {
     // Обновляем состояния
     setShownElement([...shownElement, randomElement]);
     setCurrentElement(randomElement);
+
+    // Закрываем details, при новом вопросе
+    if (detailsRef.current) {
+      detailsRef.current.open = false;
+    }
   };
+
+  // Отображаем случайную карточку при первом запуске
+  useEffect(() => {
+    const randomQuestion = data[Math.floor(Math.random() * data.length)];
+    setCurrentElement(randomQuestion);
+  }, []);
 
   return (
     <div>
-      {/* <h2>{randomElement.question}</h2>
-      <p className="popup__question">{randomElement.question}</p>
-      <details>
-        <summary>Ответ:</summary>
-        <p>{randomElement.answer}</p>
-      </details> */}
       {currentElement && (
         <div>
-          {Object.entries(currentElement).map(([key, value]) => (
-            <p key={key}>
-              {key}, {value}
-            </p>
-          ))}
+          {Object.entries(currentElement).map(([key, value], index) => {
+            return index === 0 ? (
+              <p key={key}>{value}</p>
+            ) : (
+              <details key={key} ref={detailsRef}>
+                <summary>Ответ:</summary>
+                <p>{value}</p>
+              </details>
+            );
+          })}
         </div>
       )}
-      {/* <button onClick={getRandomElement}>Показать объект 1</button>
-      <button onClick={getRandomElement}>Показать объект 2</button> */}
       <AnswerButtons getRandomElement={getRandomElement} />
     </div>
   );
