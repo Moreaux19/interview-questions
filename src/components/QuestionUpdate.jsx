@@ -48,13 +48,11 @@ export default function QuestionUpdate() {
         <div>
           {Object.entries(currentElement).map(([key, value], index) => {
             return index === 0 ? (
-              <p className="popup__text" key={key}>
-                {value}
-              </p>
+              <p key={key}>{value}</p>
             ) : (
               <details key={key} ref={detailsRef}>
                 <summary>Ответ:</summary>
-                <p className="popup__text">{value}</p>
+                <p>{value}</p>
               </details>
             );
           })}

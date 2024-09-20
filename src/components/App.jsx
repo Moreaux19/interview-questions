@@ -6,11 +6,9 @@ export default function App() {
   const [popupActive, setPopupActive] = useState(false);
   return (
     <div className="page">
-      <main className="">
-        <button className="start-button" onClick={() => setPopupActive(true)}>
-          Start
-        </button>
-      </main>
+      <button className="start-button" onClick={() => setPopupActive(true)}>
+        Start
+      </button>
       <Popup active={popupActive} setActive={setPopupActive} />
     </div>
   );
