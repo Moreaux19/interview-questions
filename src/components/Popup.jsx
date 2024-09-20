@@ -10,7 +10,7 @@ export default function Popup({ active, setActive }) {
         setActive(false);
       }}
     >
-      <div className="popup__content" onClick={evt => evt.stopPropagation()}>
+      <div className="popup__window" onClick={evt => evt.stopPropagation()}>
         <QuestionUpdate />
         <button className="popup__close-button" onClick={() => setActive(false)}></button>
       </div>
