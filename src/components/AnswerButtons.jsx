@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import data from '../utils/data';
-// import { handleClick } from '../utils/handleClick';
 
 const totalQuestions = data.length;
 
