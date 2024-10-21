@@ -2,21 +2,6 @@
 
 const data = [
   {
-    question: 2 + 2,
-    answer: 4
-  },
-  {
-    question: 'Какое число больше 1000?',
-    answer: 1001
-  },
-  {
-    question: 'Сколько секунд в 24 часах?',
-    answer: 86400
-  }
-];
-
-const data2 = [
-  {
     question: 'Какие типы данных существуют в JavaScript?',
     answer:
       'В JavaScript существует семь примитивных типов данных: Number, String, Boolean, Null, Undefined, Symbol и BigInt. Также есть объекты, которые включают в себя функции, массивы и другие структуры данных.'
