@@ -8,3 +8,9 @@
   display: grid;
   grid-template-rows: 3fr 1fr;
 }
+
+@media screen and (max-width: 430px) {
+  .popup__window {
+    width: 310px;
+  }
+}
