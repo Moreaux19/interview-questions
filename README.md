@@ -13,8 +13,7 @@
 - React Hooks
 - Методология БЭМ
 - DOM элементы
-- Флексбокс-вёрстка
-- Разметка и вёрстка форм
+- Адаптивная вёрстка
 - Vite
 
 Страница проекта на Github Pages: https://moreaux19.github.io/interview-questions/
