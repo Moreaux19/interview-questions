@@ -9,8 +9,15 @@
   grid-template-rows: 3fr 1fr;
 }
 
+@media screen and (max-width: 1200px) {
+  .popup__window {
+    width: 70vw;
+    min-height: 50vh;
+  }
+}
+
 @media screen and (max-width: 430px) {
   .popup__window {
-    width: 310px;
+    width: 90vw;
   }
 }
