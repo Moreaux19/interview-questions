@@ -1,10 +1,11 @@
 .page {
+  margin: 0 auto;
   width: 100vw;
   height: 100vh;
   background-image: url('../../assets/background-image-space.jpg');
   background-size: contain;
   font-family: 'Inter', 'Arial', sans-serif;
-  font-size: 19px;
+  font-size: 17px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,12 +18,12 @@
 
 @media screen and (max-width: 1024px) {
   .page {
-    font-size: 17px;
+    font-size: 15px;
   }
 }
 
 @media screen and (max-width: 768px) {
   .page {
-    font-size: 15px;
+    font-size: 14px;
   }
 }

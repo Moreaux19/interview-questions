@@ -3,7 +3,7 @@
   border-radius: 12px;
   background-color: aliceblue;
   width: 40vw;
-  min-height: 40vh;
+  min-height: 30vh;
   position: relative;
   display: grid;
   grid-template-rows: 3fr 1fr;
@@ -11,8 +11,8 @@
 
 @media screen and (max-width: 1200px) {
   .popup__window {
-    width: 70vw;
-    min-height: 50vh;
+    width: 60vw;
+    min-height: 40vh;
   }
 }
 
