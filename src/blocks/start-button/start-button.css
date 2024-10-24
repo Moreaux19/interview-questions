@@ -74,3 +74,18 @@
 .start-button:hover {
   transform: scale(110%);
 }
+
+@media screen and (max-width: 768px) {
+  .start-button {
+    width: 25rem;
+    height: 13rem;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .start-button {
+    width: 19rem;
+    height: 10rem;
+    font-size: 3.5em;
+  }
+}
